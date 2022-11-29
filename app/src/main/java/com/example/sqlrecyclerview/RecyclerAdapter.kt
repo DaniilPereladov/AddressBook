@@ -16,7 +16,9 @@ class RecyclerAdapter(private val list: List<Task>): RecyclerView.Adapter<Recycl
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = list[position].title
+        val s = list[position].fname + " " + list[position].lname
+        holder.textView.text = s
+
         holder.button.setOnClickListener {
             onItemClick(holder.adapterPosition)
         }

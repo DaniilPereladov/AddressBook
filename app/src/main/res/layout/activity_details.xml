@@ -7,12 +7,17 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="138dp"
-        android:layout_height="23dp"
+        android:layout_width="145dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="100dp"
         android:text="TextView"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="278dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.462" />
 
     <TextView
         android:id="@+id/textView3"
@@ -20,17 +25,12 @@
         android:layout_height="67dp"
         android:text="Имя:"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="57dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="85dp"
-        android:layout_height="65dp"
-        android:text="Фамилия:"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="128dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094" />
 
     <TextView
         android:id="@+id/textView5"
@@ -38,17 +38,26 @@
         android:layout_height="79dp"
         android:text="Дата рождения:"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="198dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.377" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="148dp"
         android:layout_height="55dp"
+        android:layout_marginTop="44dp"
         android:text="Номер телефона:"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="280dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.537" />
 
     <TextView
         android:id="@+id/textView7"
@@ -56,51 +65,87 @@
         android:layout_height="27dp"
         android:text="TextView"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="57dp" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="150dp"
-        android:layout_height="27dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="128dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="137dp"
         android:layout_height="27dp"
+        android:layout_marginTop="108dp"
         android:text="TextView"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="116dp"
-        tools:layout_editor_absoluteY="204dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.251" />
 
-    <LinearLayout
-        android:layout_width="358dp"
-        android:layout_height="200dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="579dp">
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="173dp"
+        android:layout_height="52dp"
+        android:text="Редактировать"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="88dp"
-            android:layout_height="42dp"
-            android:text="Назад" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="110dp"
+        android:layout_height="58dp"
+        android:text="Удалить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="169dp"
-            android:layout_height="46dp"
-            android:text="Редактировать" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="98dp"
+        android:layout_height="53dp"
+        android:text="Назад"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="107dp"
-            android:layout_height="46dp"
-            android:text="Удалить" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="94dp"
+        android:layout_height="62dp"
+        android:text="Фамилия:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.222" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="172dp"
+        android:layout_height="27dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.211" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

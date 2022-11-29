@@ -17,97 +17,63 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.ColorUtils
 import androidx.vectordrawable.graphics.drawable.ArgbEvaluator
+import com.example.myapplication.DBHelper
 
 class EditActivity : AppCompatActivity() {
-    var id = 0
+
     lateinit var backgroundLayout: ConstraintLayout
     lateinit var windowLayout: ConstraintLayout
-
+    private val dbHelper = DBHelper(this)
     companion object {
-        const val RESULT_KEY = "RESULT_KEY"
+        const val RESULT_KEY_FNAME = "RESULT_KEY_FNAME"
+        const val RESULT_KEY_LNAME = "RESULT_KEY_LNAME"
+        const val ITEM_PHONE= "ITEM_PHONE"
+        const val ITEM_BIRTH = "ITEM_BIRTH"
+        const val ITEM_FNAME = "ITEM_FNAME"
+        const val ITEM_LNAME = "ITEM_LNAME"
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        backgroundLayout = findViewById(R.id.background)
-        windowLayout = findViewById(R.id.window)
+        val editFName = findViewById<EditText>(R.id.editTextTextPersonName2)
+        val editBirth = findViewById<EditText>(R.id.editTextTextPersonName3)
+        val editPhone = findViewById<EditText>(R.id.editTextPhone)
+        val editLName = findViewById<EditText>(R.id.editTextTextPersonName9)
+        val saveButton = findViewById<Button>(R.id.button5)
+        val cancelButton = findViewById<Button>(R.id.button6)
+            val id2 = intent.getLongExtra(ContactDetails.ITEM_ID_KEY, 0)
+            val task = dbHelper.getById(id2.toInt())
+            editFName.setText(task?.fname)
+            editBirth.setText(task?.birth)
+            editLName.setText(task?.lname)
+            editPhone.setText(task?.phone.toString())
 
-        val itemText = intent.getStringExtra(MainActivity.ITEM_KEY)
-        id = intent.getIntExtra(MainActivity.ITEM_ID_KEY, 0)
-        val editText = findViewById<EditText>(R.id.editTextTextMultiLine)
-        editText.setText(itemText)
-
-        val buttonSave = findViewById<Button>(R.id.buttonSave)
-        buttonSave.setOnClickListener {
-            val returnIntent = Intent()
-            returnIntent.putExtra(RESULT_KEY, editText.text.toString())
-            returnIntent.putExtra(MainActivity.ITEM_ID_KEY, id)
-            setResult(Activity.RESULT_OK, returnIntent)
-            finish()
-        }
-
-        setActivityStyle()
-    }
-
-    @SuppressLint("RestrictedApi")
-    private fun setActivityStyle() {
-
-        // Make the background full screen, over status bar
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        this.window.statusBarColor = Color.TRANSPARENT
-        val winParams = this.window.attributes
-        winParams.flags =
-            winParams.flags and WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS.inv()
-        this.window.attributes = winParams
-
-        // Fade animation for the background of Popup Window
-        val alpha = 100 //between 0-255
-        val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor("#000000"), alpha)
-        val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)
-        colorAnimation.duration = 500 // milliseconds
-        colorAnimation.addUpdateListener { animator ->
-            backgroundLayout.setBackgroundColor(animator.animatedValue as Int)
-        }
-        colorAnimation.start()
-
-        windowLayout.alpha = 0f
-        windowLayout.animate().alpha(1f).setDuration(500)
-            .setInterpolator(DecelerateInterpolator()).start()
-
-        // Close window when you tap on the dim background
-        backgroundLayout.setOnClickListener { onBackPressed() }
-        windowLayout.setOnClickListener { /* Prevent activity from closing when you tap on the popup's window background */ }
-    }
-
-    @SuppressLint("RestrictedApi")
-    override fun onBackPressed() {
-        // Fade animation for the background of Popup Window when you press the back button
-        val alpha = 100 // between 0-255
-        val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor("#000000"), alpha)
-        val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), alphaColor, Color.TRANSPARENT)
-        colorAnimation.duration = 500 // milliseconds
-        colorAnimation.addUpdateListener { animator ->
-            backgroundLayout.setBackgroundColor(
-                animator.animatedValue as Int
-            )
-        }
-
-        // Fade animation for the Popup Window when you press the back button
-        windowLayout.animate().alpha(0f).setDuration(500).setInterpolator(
-            DecelerateInterpolator()
-        ).start()
-
-        // After animation finish, close the Activity
-        colorAnimation.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
+            saveButton.setOnClickListener {
+            val fname = editFName.text.toString()
+                val lname = editLName.text.toString()
+            val phone = editPhone.text.toString()
+            val birth = editBirth.text.toString()
+            if (title.isNotBlank() && phone.isNotBlank() && birth.isNotBlank()) {
+                dbHelper.updateTask(id2, fname,lname,phone,birth)
+                val returnIntent = Intent()
+                returnIntent.putExtra(RESULT_KEY_FNAME, fname)
+                returnIntent.putExtra(RESULT_KEY_LNAME, lname)
+                returnIntent.putExtra(MainActivity.ITEM_ID_KEY, id2)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
                 finish()
-                overridePendingTransition(0, 0)
             }
-        })
-        colorAnimation.start()
-    }
 
+            }
+
+            cancelButton.setOnClickListener {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+    }
 }

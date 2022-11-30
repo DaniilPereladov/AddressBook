@@ -44,11 +44,11 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent,  REQUEST_CODE )
         }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-       /* searchButton.setOnClickListener {
+        searchButton.setOnClickListener {
             list.clear()
             val name = editText.text.toString()
             list.addAll(dbHelper.getByName(name))
-        }*/
+        }
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         button.setOnClickListener {

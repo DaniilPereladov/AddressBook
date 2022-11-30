@@ -94,12 +94,14 @@ class DBHelper(context: Context?) :
         return result
     }
 
-    fun getByName(fname: String): List<Task> {
+    fun getByName(name: String): List<Task> {
         var result=mutableListOf<Task>()
+        val columns = arrayOf<String>("$KEY_FNAME","$KEY_LNAME")
         val database = this.writableDatabase
         val cursor: Cursor = database.query(
-            TABLE_NAME, null, "fname = ?", arrayOf(fname.toString()),
-            null, null, null
+            TABLE_NAME,
+            null,
+            "$KEY_LNAME like ? OR $KEY_FNAME like ?",  arrayOf(name), null, null, null, null
         )
         if (cursor.moveToFirst()) {
             val idIndex: Int = cursor.getColumnIndex(KEY_ID)

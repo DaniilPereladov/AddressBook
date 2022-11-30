@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.DBHelper
@@ -22,6 +23,7 @@ import com.example.myapplication.DBHelper
 class MainActivity : AppCompatActivity() {
 
     private val list = mutableListOf<Task>()
+    private val list2 = mutableListOf<Task>()
     private val adapter = RecyclerAdapter(list)
     private val dbHelper = DBHelper(this)
 
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         list.addAll(dbHelper.getAllTasks())
+        list2.addAll(dbHelper.getAllTasks())
         val editText= findViewById<EditText>(R.id.editTextTextPersonName)
         val button=findViewById<Button>(R.id.button)
         val searchButton=findViewById<Button>(R.id.button9)
@@ -44,17 +47,19 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent,  REQUEST_CODE )
         }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        searchButton.setOnClickListener {
-            list.clear()
-            val name = editText.text.toString()
-            list.addAll(dbHelper.getByName(name))
-        }
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         button.setOnClickListener {
             val intent = Intent(this, CreateActivity::class.java)
             startActivityForResult(intent, MainActivity.REQUEST_CODE)
         }
+        editText.doAfterTextChanged {
+            list.clear()
+            val name = editText.text.toString()
+            list.addAll(dbHelper.getByName(name))
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -55,9 +55,12 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, MainActivity.REQUEST_CODE)
         }
         editText.doAfterTextChanged {
-            list.clear()
             val name = editText.text.toString()
-            list.addAll(dbHelper.getByName(name))
+             
+            list.clear()
+            val listFilter = list2.filter { it.fname.toString().lowercase().contains(name) || it.lname.toString().lowercase().contains(name)}
+            list.addAll(listFilter)
+            adapter.notifyDataSetChanged()
         }
 
     }
